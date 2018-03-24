@@ -2,7 +2,7 @@ class CivilRegistry{
     //List<Citizen> wApp
     //List<Citizen> wOutApp
     public:
-        CivilRegistry(); 
+        CivilRegistry();
         void insertCitizen(); 
         void removeCitizen();
 }
