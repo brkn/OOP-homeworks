@@ -9,7 +9,8 @@
 using namespace std;
 
 void sortWApps() {
-	
+	registry.wApp.sort();
+
 }
 void sortWoutApps() {
 	registry.wOutApp.sort();
@@ -21,6 +22,7 @@ int printOutput(int sw) {
 		fs.open("output.txt");
 		if (!fs.is_open()) return -2; //cant open error
 		fs << "idNo/tName/tSurname/thasApp/tappDate/tappSlot/t/tentryClock" << endl;
+		cout << "idNo/tName/tSurname/thasApp/tappDate/tappSlot/t/tentryClock" << endl; //delete this
 		//iterator here
 		//for(itr = ) {
 
