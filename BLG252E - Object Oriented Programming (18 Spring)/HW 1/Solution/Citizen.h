@@ -9,7 +9,11 @@ class Citizen{
     Time* appTime;
     char* appSlot;
     public:
-        Citizen();
-        void getAppTime();
+		/*bool operator<(const Citizen& x) const;
+		bool operator>(const Citizen& x) const;
+		bool operator==(const Citizen& x) const;*/
+        Citizen(char info[7][30]);
+        const Time* getAppTime();
+		bool getHasApp();
 };
 #endif

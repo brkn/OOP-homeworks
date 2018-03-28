@@ -4,10 +4,10 @@
 class Time{
     int minute, hour, day, month, year;
     public:
-        Time(int,int,int,int,int); 
+        Time(char* date, char* entryclock);
         std::string getTime(); 
-        bool operator<(Time); 
-        bool operator>(Time);
-        bool operator==(Time);
+        bool operator<(const Time& x) const; 
+        bool operator>(const Time& x) const;
+		bool operator==(const Time& x) const;
 };
 #endif

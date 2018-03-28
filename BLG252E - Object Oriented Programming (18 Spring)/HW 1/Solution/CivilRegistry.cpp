@@ -3,12 +3,13 @@
 CivilRegistry::CivilRegistry(){
 
 }
-int CivilRegistry::insertCitizen(const char info[7][30]) {
-	if (strcmp(info[3], "TRUE")) {
 
+int CivilRegistry::insertCitizen(Citizen Kane) {
+	if (Kane.getHasApp()) {
+		this->wApp.push_back(Kane);
 	}
 	else {
-
+		this->wOutApp.push_back(Kane);
 	}
-	return 0; //delete this
+	return 0; //not sure if necessery //delete this
 }
