@@ -18,14 +18,19 @@ Citizen::Citizen(char info[7][30]) {
 	else {
 		this->hasApp = false;
 	}
-	this->appTime = &Time(info[4], info[6]);
+	//this->appTime = new Time;
+	this->appTime = new Time(info[4], info[6]);
 }
 
-const Time* Citizen::getAppTime(){
+const Time* Citizen::getAppTime() const{
 	return this->appTime;
+	
 }
-bool Citizen::getHasApp() {
+bool Citizen::getHasApp() const{
 	return this->hasApp;
+}
+const char* Citizen::getAppSlot() const{
+	return this->appSlot;
 }
 /*
 bool Citizen::operator<(const Citizen& x) const{

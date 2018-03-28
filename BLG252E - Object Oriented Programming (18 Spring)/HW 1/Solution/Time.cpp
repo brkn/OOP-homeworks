@@ -13,39 +13,45 @@ Time::Time(char* date, char* entryclock){
 	this->month = (date[3] - 48) * 10 + (date[4] - 48);
 	this->year = (date[6] - 48) * 10 + (date[7] - 48);
 }
+/*Time* Time::getTime() {
+	return this;
+}*/
+int Time::getDate() const {
+	return this->day + this->month * 100 + this->year * 10000;
+}
 
 bool Time::operator<(const Time& x) const {
-	int powermultiplier = 1;
+	double powermultiplier = 1;
 	int score1 = this->minute + this->hour*pow(100, powermultiplier++) +
 				 this->day*pow(100, powermultiplier++) + this->month*pow(100, powermultiplier++) +
 				 this->year*pow(100, powermultiplier);
 	powermultiplier = 1;
 	int score2 = x.minute + x.hour*pow(100, powermultiplier++) +
 				 x.day*pow(100, powermultiplier++) + x.month*pow(100, powermultiplier++) +
-				 x.year*pow(100, powermultiplier++);
+				 x.year*pow(100, powermultiplier);
 
 	return score1 < score2;
 
 }	 		
 bool Time::operator>(const Time& x) const {
-	int powermultiplier = 1;
+	double powermultiplier = 1;
 	int score1 = this->minute + this->hour*pow(100, powermultiplier++) +
 		this->day*pow(100, powermultiplier++) + this->month*pow(100, powermultiplier++) +
-		this->year*pow(100, powermultiplier++);
+		this->year*pow(100, powermultiplier);
 	powermultiplier = 1;
 	int score2 = x.minute + x.hour*pow(100, powermultiplier++) +
 		x.day*pow(100, powermultiplier++) + x.month*pow(100, powermultiplier++) +
-		x.year*pow(100, powermultiplier++);
+		x.year*pow(100, powermultiplier);
 	return score1 > score2;
 }	 
 bool Time::operator==(const Time& x) const {
-	int powermultiplier = 1;
+	double powermultiplier = 1;
 	int score1 = this->minute + this->hour*pow(100, powermultiplier++) +
 		this->day*pow(100, powermultiplier++) + this->month*pow(100, powermultiplier++) +
-		this->year*pow(100, powermultiplier++);
+		this->year*pow(100, powermultiplier);
 	powermultiplier = 1;
 	int score2 = x.minute + x.hour*pow(100, powermultiplier++) +
 		x.day*pow(100, powermultiplier++) + x.month*pow(100, powermultiplier++) +
-		x.year*pow(100, powermultiplier++);
+		x.year*pow(100, powermultiplier);
 	return score1 == score2;
 }
