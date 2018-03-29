@@ -1,4 +1,5 @@
 #include "Citizen.h"
+#include <string.h>
 
 Citizen::Citizen(char info[7][30]) {
 	this->idNo = new char[sizeof(info[0])];
@@ -32,13 +33,37 @@ bool Citizen::getHasApp() const{
 const char* Citizen::getAppSlot() const{
 	return this->appSlot;
 }
-/*
-bool Citizen::operator<(const Citizen& x) const{
-	return this->appTime < x.appTime;
+const char* Citizen::getName() const {
+	return this->name;
 }
-bool Citizen::operator>(const Citizen& x) const {
-	return this->appTime > x.appTime;
+
+std::string Citizen::getInfos() const {
+	std::string str(this->idNo);
+	str += "\t";
+	str += this->name;
+	str += "\t";
+	str += this->surname;
+	str += "\t";
+	if (this->hasApp) str += "TRUE";
+	else str += "FALSE";
+	str += "\t";
+	int x = this->appTime->getDate();
+	int y = x % 100;
+	if (y < 10) str += '0';
+	str += std::to_string(y);
+	str += "-";
+	x = x / 100;
+	y = x % 100;
+	if (y < 10) str += '0';
+	str += std::to_string(y);
+	str += "-";
+	x = x /100;
+	y = x % 100;
+	if (y < 10) str += '0';
+	str += std::to_string(y);
+	str += "\t";
+	str += this->appSlot;
+	str += "\t";
+	str += this->appTime->getTime();
+	return str;
 }
-bool Citizen::operator==(const Citizen& x) const {
-	return this->appTime == x.appTime;
-}*/

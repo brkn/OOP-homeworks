@@ -13,5 +13,7 @@ class Citizen{
         const Time* getAppTime() const;
 		bool getHasApp() const;
 		const char* getAppSlot() const;
+		std::string getInfos() const;
+		const char* getName() const;
 };
 #endif

@@ -1,0 +1,10 @@
+			Report of Homework 1
+
+- All the necessary functions(getters and printers etc) were written as const function to protect the information
+
+-Lists were declared as public because i prefered to use builtin list::sort function. (writing an extra method was not allowed)
+
+- Operator overloads written as const and paramaters were also written as constant to protect from changing data.
+
+-Program should be comppiled in c11 because of sort function.
+	g++ -std=c++11 main.cpp Citizen.cpp CivilRegistry.cpp Time.cpp -o ./a

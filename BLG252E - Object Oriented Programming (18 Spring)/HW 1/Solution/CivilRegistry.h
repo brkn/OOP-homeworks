@@ -9,8 +9,7 @@ class CivilRegistry{
 		std::list<Citizen> wOutApp;
 
         CivilRegistry();
-        int insertCitizen(Citizen);
+        void insertCitizen(Citizen);
         Citizen removeCitizen();
-		//void getWapp
 };
 #endif

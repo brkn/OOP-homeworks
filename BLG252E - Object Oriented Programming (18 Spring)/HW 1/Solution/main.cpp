@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <string.h>
 
 #include "CivilRegistry.h"
 #include "Time.h"
@@ -10,44 +11,50 @@ using namespace std;
 
 CivilRegistry registry;
 
-bool compareWapps(const Citizen& first, const Citizen& second) {
-	if (first.getAppTime()->getDate() != second.getAppTime()->getDate())
-		return (first.getAppTime()->getDate() < second.getAppTime()->getDate());
-	int comp = strcmp(first.getAppSlot(), second.getAppSlot());
-	if (comp) {
-		if (comp < 0) return true;
-		else return false;
-	}
-	else
-		return (first.getAppTime() < second.getAppTime());
-}
-
-bool compareWoutapps(const Citizen& first, const Citizen& second) {
-	return (first.getAppTime() < second.getAppTime());
-}
 
 void sortWApps() {
-	registry.wApp.sort(compareWapps);
+	registry.wApp.sort([](const Citizen& first, const Citizen& second)
+		{
+		if (first.getAppTime()->getDate() != second.getAppTime()->getDate())
+			return (first.getAppTime()->getDate() < second.getAppTime()->getDate());
+		int comp = strcmp(first.getAppSlot(), second.getAppSlot());
+		if (comp) {
+			if (comp < 0) return true;
+			else return false;
+		}
+		else
+			return (*first.getAppTime() < *second.getAppTime());
+		}
+		);
 }
 void sortWoutApps() {
-	registry.wOutApp.sort(compareWoutapps);
+	registry.wOutApp.sort([](const Citizen& first, const Citizen& second)
+	{
+		return (*first.getAppTime() < *second.getAppTime());
+	}
+	);
 }
 
-int printOutput() { //change return value to bool if not necesery //delete this
+bool printOutput() { 
 	ofstream fs;
 	fs.open("output.txt");
-	if (!fs.is_open()) return -2; //cant open error
-	fs << "idNo\tName\tSurname\thasApp\tappDate\t\tappSlot\t\tentryClock" << endl;
-	cout << "idNo\tName\tSurname\thasApp\tappDate\tappSlot\t\tentryClock" << endl; //delete this
+	if (!fs.is_open()) return false; //cant open error
 
-	//iterator here
-	//for(itr = ) {
-
-	//}
-	//iterator = other list
-	//for(itr = ) {
-
-	//}
+	list<Citizen>::iterator itr;
+	fs << "Citizens with appointment:" << endl;
+	cout << "Citizens with appointment:" << endl;
+	for (itr = registry.wApp.begin(); itr != registry.wApp.end(); itr++) {
+		fs << itr->getName() << endl;
+		cout << itr->getName() << endl;
+	}
+	fs << "Citizens without an appointment:" << endl;
+	cout << "Citizens without an appointment:" << endl;
+	for (itr = registry.wOutApp.begin(); itr != registry.wOutApp.end(); itr++) {
+		fs << itr->getName() << endl;
+		cout << itr->getName() << endl;
+	}
+	fs.close();
+	return true;
 }
 
 bool readFileAndInsertAll(const char* filename) {
@@ -69,14 +76,17 @@ bool readFileAndInsertAll(const char* filename) {
 	return true;
 }
 
-int main(int argc, const char * argv[]) {
-	if (!readFileAndInsertAll("input.txt")) //reads file
-		return -2; //cant open error
-	sortWApps(); //check if correct //delete this 
-	sortWoutApps();
-	printOutput();
+void freeMemory() {
+	registry.wApp.clear();
+	registry.wOutApp.clear();
+}
 
-	//close file pointers //delete this 
-	//check if deconstructers work//delete this 
+int main(int argc, const char * argv[]) {
+	if (!readFileAndInsertAll("input.txt")) //reads file and inserts to both lists unsorted
+		return -2; //cant open error
+	sortWApps(); //sorts wApp list
+	sortWoutApps();//sorts woutApp list 
+	printOutput(); //prints output both console and output.txt
+	freeMemory();
     return 0;
 }

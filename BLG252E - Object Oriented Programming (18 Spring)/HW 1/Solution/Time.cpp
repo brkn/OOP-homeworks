@@ -1,6 +1,7 @@
 #include "Time.h"
+#include <math.h>
 
-Time::Time(char* date, char* entryclock){
+Time::Time(char* date, char* entryclock) {
 	this->hour = entryclock[0] - 48;
 	if (sizeof(entryclock) == 5) {
 		this->hour = this->hour * 10 + entryclock[1] - 48;
@@ -13,9 +14,13 @@ Time::Time(char* date, char* entryclock){
 	this->month = (date[3] - 48) * 10 + (date[4] - 48);
 	this->year = (date[6] - 48) * 10 + (date[7] - 48);
 }
-/*Time* Time::getTime() {
-	return this;
-}*/
+std::string Time::getTime() const {
+	std::string str = std::to_string(this->hour);
+	str += '.';
+	if (this->minute < 10) str += '0';
+	str+= std::to_string(this->minute);
+	return str;
+}
 int Time::getDate() const {
 	return this->day + this->month * 100 + this->year * 10000;
 }
