@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Grayling.h"
+
 using namespace std;
 
 void show(Grayling *g) { 
@@ -14,7 +15,7 @@ void aging(Grayling *g) {
 
 int main() {
 	Grayling1 G1_1('f',"G1_1"); //Create a Grayling1 with gender and name attributes 
-    Grayling1 G1_2(G1_1,”f”,”G1_2_CC”);      // Copy Constructor *_CC 
+	Grayling1 G1_2(G1_1, 'f', "G1_2_CC");      // Copy Constructor *_CC 
 	Grayling2 G2_1('m',"G2_1"); 
 	Grayling3 G3_1('f',"G3_1");
 
@@ -34,7 +35,7 @@ int main() {
 	aging(&G2_1); 
 	aging(&G2_1); 
 	aging(&G2_1);
-	reproduce(&G1_1); 
+	reproduce(&G2_1); 
 	aging(&G2_1);
 
 	aging(&G3_1); 
@@ -43,8 +44,8 @@ int main() {
 	reproduce(&G3_1); 
 	aging(&G3_1);
 
-	getch(); 
-  return 0; 
+	//getchar(); 
+	return 0; 
 } 
  
  
