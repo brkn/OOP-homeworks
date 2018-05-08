@@ -5,9 +5,9 @@ using namespace std;
 
 template <class t1>
 class genericArray{
-    t1* elements;
     int size;
     public:
+		t1* elements;
         t1 total;
         genericArray(int givensize);
         ~genericArray();

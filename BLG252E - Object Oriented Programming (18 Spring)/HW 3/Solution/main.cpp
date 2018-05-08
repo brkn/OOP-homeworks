@@ -1,6 +1,5 @@
-#include <iostream>
 #include "GenericArray.h"
-#include "Money.h" //? //delete
+#include "Money.h" 
 
 using namespace std;
 
@@ -37,8 +36,8 @@ int main() {
 	m1.elements[4] =90;
 	
 	m3.total = m3.sum();
-	m3.total = m3.sum();
-	m3.total = m3.sum();
+	m2.total = m2.sum();
+	m1.total = m1.sum();
 	return 0; 
 } 
  
