@@ -9,5 +9,6 @@ class Money{
         Money(int, int);
         ~Money();
         bool operator<(const Money& m2) const; //public? //delete
+        Money operator+(const Money& m2); //fix this //delete
 };
 #endif
